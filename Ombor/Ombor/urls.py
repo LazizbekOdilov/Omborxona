@@ -1,15 +1,11 @@
 from django.contrib import admin
-from django.urls import path
-
-from asosiy.views import *
+from django.urls import path, include
+from accounts.views import Login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home),
-    path('bulimlar/', builimlar),
-    path('client/', client_update),
-    path('clients/', clients),
-    path('product/', product),
-    path('products/', products),
-    path('stats/', stats),
+    path('', Login.as_view()),
+    path('user/', include("accounts.urls")),
+    path('asosiy/', include("asosiy.urls")),
+    path('stats/', include("stats.urls")),
 ]

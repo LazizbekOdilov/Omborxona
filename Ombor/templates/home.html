@@ -17,13 +17,13 @@
         {% if form.errors %}
     <p>Login yoki parolda xatolik bor</p>
         {% endif %}
-        <form action="#">
+        <form method="post">{% csrf_token %}
         <div class="card-body">
                 <label for="login">Login: </label>
-                <input name="login" id="login" class="form-control" type="text">
+                <input name="l" id="login" class="form-control" type="text">
                 <br>
                 <label for="password">Parol: </label>
-                <input name="password" id="password" class="form-control" type="password">
+                <input name="p" id="password" class="form-control" type="password">
         </div>
         <div class="card-footer">
             <button class="btn btn-secondary" onclick="identifikatsiya(); return false;">Tasdiqlash</button>
