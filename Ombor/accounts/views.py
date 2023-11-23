@@ -9,10 +9,13 @@ class Login(View):
 
     def post(self, request):
         user = authenticate(
-            login = request.POST.get("l"),
-            password= request.POST.get("p")
+            username = request.POST.get("l"),
+            password = request.POST.get("p")
         )
-        return render(request, "bulimlar.html")
+        if user:
+            login(request, user)
+            return redirect("sections")
+        return redirect("login")
 
 class LogoutView(View):
     def get(self, request):

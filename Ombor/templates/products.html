@@ -142,14 +142,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {% for mahsulot in mahsulotlar %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Un</td>
-                            <td>Qozoq Oliy navi</td>
-                            <td>530000 so'm</td>
-                            <td>50</td>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ mahsulot.nom }}</td>
+                            <td>{{ mahsulot.brend }}</td>
+                            <td>{{ mahsulot.narx }}</td>
+                            <td>{{ mahsulot.miqdori }}</td>
                             <td><a href="#"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
                         </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -182,6 +184,12 @@
               <label for="new-product-name">Miqdori:</label>
               <input type="number" name="pr_amount" placeholder="Mahsulot miqdori..." id="new-product-amount" class="form-control" required>
               <br>
+                <label for="new-product-name">O'lchov</label>
+                <select name="olchov">
+                    <option value="opt">Dona</option>
+                    <option value="opt">Blog</option>
+                    <option value="opt">Karobka</option>
+                </select>
             </div>
     
           <!-- Modal footer -->
@@ -203,13 +211,13 @@
 <!-- Bootstrap -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE -->
-<script src="dist/js/adminlte.js"></script>
+<script src="{% static 'dist/js/adminlte.js' %}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="{% static 'dist/js/demo.js' %}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard3.js"></script>
+<script src="{% static 'dist/js/pages/dashboard3.js' %}"></script>
 </body>
 </html>
