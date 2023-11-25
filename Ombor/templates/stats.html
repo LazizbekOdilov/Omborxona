@@ -9,7 +9,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -144,17 +144,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                    {% for stats in statslar %}
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Product nomi, brend nomi</td>
-                            <td>Client ismi, do'koni nomi</td>
-                            <td>2022.06.13</td>
-                            <td>30</td>
-                            <td>1260000 so'm</td>
-                            <td>560000 so'm</td>
-                            <td>700000 so'm</td>
-                            <td><a href="#"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <th scope="row">{{ stats.mahsulot }}</th>
+                            <th scope="row">{{ stats.miqdor }}</th>
+                            <th scope="row">{{ stats.sana }}</th>
+                            <th scope="row">{{ stats.summa }}</th>
+                            <th scope="row">{{ stats.tolangam_summa }}</th>
+                            <th scope="row">{{ stats.nasiya }}</th>
+                            <td><a href="#">
+                                <button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button>
+                            </a></td>
                         </tr>
+                    {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -173,13 +176,13 @@
           </div>
     
           <!-- Modal body -->
-          <form action="#" id="new-product-form" method="post">{% csrf_token %}
+          <form id="new-product-form" method="post">{% csrf_token %}
             <div class="modal-body">
               <label for="product">Product:</label>
-             <input type="datetime-local" name="sana" placeholder="Sana" id="product" class="form-control" required>
+             <input type="datetime-local" name="mahsulot" placeholder="Sana" id="product" class="form-control" required>
                 <br>
               <label for="client">Client:</label>
-                <input type="datetime-local" name="sana" placeholder="Sana" id="client" class="form-control" required>
+                <input type="datetime-local" name="mijoz" placeholder="Sana" id="client" class="form-control" required>
               <br>
               <label for="sana">Sana:</label>
               <input type="datetime-local" name="sana" placeholder="Sana" id="sana" class="form-control" required>
@@ -193,8 +196,8 @@
                 <label for="nasiya">Nasiya:</label>
               <input type="number" name="nasiya" placeholder="Nasiya" id="nasiya" class="form-control" required>
               <br>
-                <label for="tolandi">To'landi:</label>
-              <input type="number" name="tolandi" placeholder="To'landi" id="tolandi" class="form-control" required>
+                <label for="tolandi">To'langan summa:</label>
+              <input type="number" name="tolangan_summa" placeholder="To'landi" id="tolandi" class="form-control" required>
               <br>
             </div>
     

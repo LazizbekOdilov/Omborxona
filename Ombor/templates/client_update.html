@@ -9,7 +9,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -56,23 +56,26 @@
           <!-- Modal Header -->
 
           <!-- Modal body -->
-          <form action="#" id="edit-product-form" >
+          <form method="post" action="#" id="edit-product-form" >{% csrf_token %}
               <label for="edit-product-name">FIO:</label>
-              <input type="text" name="client_name" value="{{client.name}}" placeholder="Mijoz to'liq ismi..." id="edit-product-name" class="form-control" required>
+              <input type="text" name="ism" value="{{mijoz.ism}}" placeholder="Mijoz to'liq ismi..." id="edit-product-name" class="form-control" required>
                 <br>
               <label for="edit-product-name">Do'kon nomi:</label>
-              <input type="text" name="client_shop" value="{{client.shop_name}}" placeholder="Do'kon nomi..." id="edit-product-brend" class="form-control" required>
+              <input type="text" name="nom" value="{{mijoz.nom}}" placeholder="Do'kon nomi..." id="edit-product-brend" class="form-control" required>
               <br>
               <label for="edit-product-name">Telefon raqami:</label>
-              <input type="text" name="client_phone" value="{{client.phone}}" placeholder="Telefon raqami..." id="edit-product-price" class="form-control" required>
+              <input type="text" name="tel" value="{{mijoz.tel}}" placeholder="Telefon raqami..." id="edit-product-price" class="form-control" required>
               <br>
               <label for="edit-product-name">Manzili:</label>
-              <input type="text" name="client_address" value="{{client.address}}" placeholder="Mijoz manzili..." id="edit-product-amount" class="form-control" required>
+              <input type="text" name="manzil" value="{{mijoz.manzil}}" placeholder="Mijoz manzili..." id="edit-product-amount" class="form-control" required>
+              <br>
+              <label for="edit-product-name">Qarzi:</label>
+              <input type="text" name="qarz" value="{{mijoz.qarz}}" placeholder="Mijoz qarzi..." id="edit-product-amount" class="form-control" required>
               <br>
 
           <!-- Modal footer -->
             <button type="submit" class="btn btn-success">Yangilash</button>
-              <a href="/clients/"><button type="button" class="btn btn-danger" data-dismiss="modal">Yopish</button></a>
+              <a href="/asosiy/clientlar/"><button type="button" class="btn btn-danger" data-dismiss="modal">Yopish</button></a>
 
       </form>
 
@@ -83,17 +86,17 @@
 <!-- REQUIRED SCRIPTS -->
 
 <!-- jQuery -->
-<script src="plugins/jquery/jquery.min.js"></script>
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
 <!-- Bootstrap -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- AdminLTE -->
-<script src="dist/js/adminlte.js"></script>
+<script src="{% static 'dist/js/adminlte.js' %}"></script>
 
 <!-- OPTIONAL SCRIPTS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{% static 'plugins/chart.js/Chart.min.js' %}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="{% static 'dist/js/demo.js' %}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard3.js"></script>
+<script src="{% static 'dist/js/pages/dashboard3.js' %}"></script>
 </body>
 </html>

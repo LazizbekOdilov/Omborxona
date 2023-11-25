@@ -9,7 +9,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -147,9 +147,11 @@
                             <th scope="row">{{ forloop.counter }}</th>
                             <td>{{ mahsulot.nom }}</td>
                             <td>{{ mahsulot.brend }}</td>
-                            <td>{{ mahsulot.narx }}</td>
-                            <td>{{ mahsulot.miqdori }}</td>
-                            <td><a href="#"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <td>{{ mahsulot.narx }} so'm </td>
+                            <td>{{ mahsulot.miqdori }} {{ mahsulot.olchov }}</td>
+                            <td><a href="/asosiy/mahsulotlar_update/{{mahsulot.id}}/">
+                                <button type="submit" class="btn btn-danger" data-toggle="modal">Update</button></a>
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -170,25 +172,28 @@
           </div>
     
           <!-- Modal body -->
-          <form action="#" id="new-product-form" >
+          <form method="post" id="new-product-form" >{% csrf_token %}
             <div class="modal-body">
               <label for="new-product-name">Nomi:</label>
-              <input type="text" name="pr_name" placeholder="Mahsulot nomi..." id="new-product-name" class="form-control" required>
+              <input type="text" name="nom" placeholder="Mahsulot nomi..." id="new-product-name" class="form-control" required>
               <br>
               <label for="new-product-name">Brend:</label>
-              <input type="text" name="pr_brand" placeholder="Mahsulot brendi..." id="new-product-brend" class="form-control" required>
+              <input type="text" name="brend" placeholder="Mahsulot brendi..." id="new-product-brend" class="form-control" required>
               <br>
               <label for="new-product-name">Narxi:</label>
-              <input type="text" name="pr_price" placeholder="Maxsulot narxi..." id="new-product-price" class="form-control" required>
+              <input type="text" name="narx" placeholder="Maxsulot narxi..." id="new-product-price" class="form-control" required>
               <br>
               <label for="new-product-name">Miqdori:</label>
-              <input type="number" name="pr_amount" placeholder="Mahsulot miqdori..." id="new-product-amount" class="form-control" required>
+              <input type="number" name="miqdor" placeholder="Mahsulot miqdori..." id="new-product-amount" class="form-control" required>
               <br>
+                <label for="new-product-name">Kelgan sana:</label>
+                <input type="date" name="date">
+                <br><br>
                 <label for="new-product-name">O'lchov</label>
                 <select name="olchov">
-                    <option value="opt">Dona</option>
-                    <option value="opt">Blog</option>
-                    <option value="opt">Karobka</option>
+                    <option value="{{product.Dona}}">Dona</option>
+                    <option value="{{product.Blog}}">Blog</option>
+                    <option value="{{product.Karobka}}">Karobka</option>
                 </select>
             </div>
     

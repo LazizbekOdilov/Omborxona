@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class Ombor(AbstractUser):
+class Omborxona(AbstractUser):
     ism = models.CharField(max_length=30, blank=True)
     nom = models.CharField(max_length=20, blank=True)
     manzil = models.CharField(max_length=30, blank=True)

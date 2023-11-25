@@ -9,7 +9,7 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
   <!-- IonIcons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
@@ -139,14 +139,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for mijoz in mijozlar %}
                         <tr>
-                            <th scope="row">1.</th>
-                            <td>Ali</td>
-                            <td>Baraka</td>
-                            <td>+998911115555</td>
-                            <td>Farg'ona markazi, Askiya</td>
-                            <td><a href="#"><button type="submit" class="btn btn-danger" data-toggle="modal">Tahrirlash</button></a></td>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ mijoz.ism }}</td>
+                            <td>{{ mijoz.nom }}</td>
+                            <td>{{ mijoz.manzil }}</td>
+                            <td>{{ mijoz.tel }}</td>
+                            <td>{{ mijoz.qarz }}</td>
+                            <td><a href="/asosiy/mijozlar_update/{{ mijoz.id }}/">
+                                <button type="submit" class="btn btn-danger" data-toggle="modal">Update</button>
+                            </a></td>
                         </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -164,20 +169,22 @@
           </div>
     
           <!-- Modal body -->
-          <form action="#" id="new-product-form" >
+          <form method="post"  id="new-product-form" > {% csrf_token %}
             <div class="modal-body">
               <label for="new-product-name">FIO:</label>
-              <input type="text" name="client_name" placeholder="Mijoz to'liq ismi..." id="new-product-name" class="form-control" required>
+              <input type="text" name="ism" placeholder="Mijoz to'liq ismi..." id="new-product-name" class="form-control" required>
                 <br>
               <label for="new-product-name">Do'kon nomi:</label>
-              <input type="text" name="client_shop" placeholder="Do'kon nomi..." id="new-product-brend" class="form-control" required>
+              <input type="text" name="nom" placeholder="Do'kon nomi..." id="new-product-brend" class="form-control" required>
               <br>
               <label for="new-product-name">Telefon raqami:</label>
-              <input type="text" name="client_phone" placeholder="Telefon raqami..." id="new-product-price" class="form-control" required>
+              <input type="text" name="tel" placeholder="Telefon raqami..." id="new-product-price" class="form-control" required>
               <br>
               <label for="new-product-name">Manzili:</label>
-              <input type="text" name="client_address" placeholder="Mijoz manzili..." id="new-product-amount" class="form-control" required>
-              <br>
+              <input type="text" name="manzil" placeholder="Mijoz manzili..." id="new-product-amount" class="form-control" required>
+                <br>
+              <label for="new-product-name">Qarz:</label>
+                <input type="text" name="qarz" placeholder="Qarz kiriting: ">
             </div>
     
           <!-- Modal footer -->
